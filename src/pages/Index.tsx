@@ -120,24 +120,30 @@ const Index = () => {
         <ScrollArea className="flex-1 px-2">
           <div className="space-y-1">
             {chats.map((chat) => (
-              <button
+              <div
                 key={chat.id}
-                onClick={() => setCurrentChatId(chat.id)}
-                className={`w-full text-left px-3 py-2 rounded-lg text-sm flex items-center gap-2 group hover:bg-[#2a2b32] ${
+                className={`w-full text-left px-3 py-2 rounded-lg text-sm flex items-center gap-2 group hover:bg-[#2a2b32] cursor-pointer ${
                   currentChatId === chat.id ? 'bg-[#2a2b32]' : ''
                 }`}
+                onClick={() => setCurrentChatId(chat.id)}
               >
                 <Icon name="MessageCircle" size={16} className="text-gray-400" />
                 <span className="text-gray-300 truncate flex-1">{chat.title}</span>
                 <div className="opacity-0 group-hover:opacity-100 flex gap-1">
-                  <button className="p-1 hover:bg-[#4d4d4f] rounded">
+                  <button 
+                    className="p-1 hover:bg-[#4d4d4f] rounded"
+                    onClick={(e) => e.stopPropagation()}
+                  >
                     <Icon name="Edit" size={12} className="text-gray-400" />
                   </button>
-                  <button className="p-1 hover:bg-[#4d4d4f] rounded">
+                  <button 
+                    className="p-1 hover:bg-[#4d4d4f] rounded"
+                    onClick={(e) => e.stopPropagation()}
+                  >
                     <Icon name="Trash2" size={12} className="text-gray-400" />
                   </button>
                 </div>
-              </button>
+              </div>
             ))}
           </div>
         </ScrollArea>
